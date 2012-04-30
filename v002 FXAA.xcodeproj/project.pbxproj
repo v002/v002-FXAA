@@ -24,9 +24,9 @@
 /* Begin PBXBuildFile section */
 		16BA95420A7EB2EB001E4983 /* v002_FXAAPlugIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 16BA95410A7EB2EB001E4983 /* v002_FXAAPlugIn.m */; };
 		16BA96310A7EB9AC001E4983 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16BA96300A7EB9AC001E4983 /* Quartz.framework */; };
-		1BCE41501447F42F000B5670 /* v002FBO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE41451447F42F000B5670 /* v002FBO.m */; };
-		1BCE41521447F42F000B5670 /* v002MasterPluginInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE41491447F42F000B5670 /* v002MasterPluginInterface.m */; };
-		1BCE41531447F42F000B5670 /* v002Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCE414B1447F42F000B5670 /* v002Shader.m */; };
+		1B3DC6FD154F5C3800B80174 /* v002FBO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DC6F7154F5C3800B80174 /* v002FBO.m */; };
+		1B3DC6FE154F5C3800B80174 /* v002MasterPluginInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DC6F9154F5C3800B80174 /* v002MasterPluginInterface.m */; };
+		1B3DC6FF154F5C3800B80174 /* v002Shader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3DC6FB154F5C3800B80174 /* v002Shader.m */; };
 		1BCE41691447F667000B5670 /* v002.FXAA.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1BCE41311447F001000B5670 /* v002.FXAA.frag */; };
 		1BCE416A1447F667000B5670 /* v002.FXAA.vert in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1BCE41661447F636000B5670 /* v002.FXAA.vert */; };
 		1BCE418C1447F7EA000B5670 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCE418B1447F7EA000B5670 /* OpenGL.framework */; };
@@ -63,13 +63,15 @@
 		16BA95400A7EB2EB001E4983 /* v002_FXAAPlugIn.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = v002_FXAAPlugIn.h; sourceTree = "<group>"; };
 		16BA95410A7EB2EB001E4983 /* v002_FXAAPlugIn.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = v002_FXAAPlugIn.m; sourceTree = "<group>"; };
 		16BA96300A7EB9AC001E4983 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
+		1B3DC6F5154F5C3800B80174 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		1B3DC6F6154F5C3800B80174 /* v002FBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v002FBO.h; sourceTree = "<group>"; };
+		1B3DC6F7154F5C3800B80174 /* v002FBO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v002FBO.m; sourceTree = "<group>"; };
+		1B3DC6F8154F5C3800B80174 /* v002MasterPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v002MasterPluginInterface.h; sourceTree = "<group>"; };
+		1B3DC6F9154F5C3800B80174 /* v002MasterPluginInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v002MasterPluginInterface.m; sourceTree = "<group>"; };
+		1B3DC6FA154F5C3800B80174 /* v002Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v002Shader.h; sourceTree = "<group>"; };
+		1B3DC6FB154F5C3800B80174 /* v002Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v002Shader.m; sourceTree = "<group>"; };
+		1B3DC6FC154F5C3800B80174 /* v002UniqueClassNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v002UniqueClassNames.h; sourceTree = "<group>"; };
 		1BCE41311447F001000B5670 /* v002.FXAA.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = v002.FXAA.frag; sourceTree = "<group>"; };
-		1BCE41441447F42F000B5670 /* v002FBO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v002FBO.h; sourceTree = "<group>"; };
-		1BCE41451447F42F000B5670 /* v002FBO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v002FBO.m; sourceTree = "<group>"; };
-		1BCE41481447F42F000B5670 /* v002MasterPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v002MasterPluginInterface.h; sourceTree = "<group>"; };
-		1BCE41491447F42F000B5670 /* v002MasterPluginInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v002MasterPluginInterface.m; sourceTree = "<group>"; };
-		1BCE414A1447F42F000B5670 /* v002Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v002Shader.h; sourceTree = "<group>"; };
-		1BCE414B1447F42F000B5670 /* v002Shader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v002Shader.m; sourceTree = "<group>"; };
 		1BCE41661447F636000B5670 /* v002.FXAA.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = v002.FXAA.vert; sourceTree = "<group>"; };
 		1BCE418B1447F7EA000B5670 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		8D5B49B6048680CD000E48DA /* v002 FXAA.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "v002 FXAA.plugin"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +127,7 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1BCE41431447F42F000B5670 /* Helper Classes */,
+				1B3DC6F4154F5C3800B80174 /* v002 Utilities */,
 				16BA95400A7EB2EB001E4983 /* v002_FXAAPlugIn.h */,
 				16BA95410A7EB2EB001E4983 /* v002_FXAAPlugIn.m */,
 			);
@@ -140,19 +142,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1BCE41431447F42F000B5670 /* Helper Classes */ = {
+		1B3DC6F4154F5C3800B80174 /* v002 Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				1BCE41441447F42F000B5670 /* v002FBO.h */,
-				1BCE41451447F42F000B5670 /* v002FBO.m */,
-				1BCE41481447F42F000B5670 /* v002MasterPluginInterface.h */,
-				1BCE41491447F42F000B5670 /* v002MasterPluginInterface.m */,
-				1BCE414A1447F42F000B5670 /* v002Shader.h */,
-				1BCE414B1447F42F000B5670 /* v002Shader.m */,
+				1B3DC6F5154F5C3800B80174 /* README.md */,
+				1B3DC6F6154F5C3800B80174 /* v002FBO.h */,
+				1B3DC6F7154F5C3800B80174 /* v002FBO.m */,
+				1B3DC6F8154F5C3800B80174 /* v002MasterPluginInterface.h */,
+				1B3DC6F9154F5C3800B80174 /* v002MasterPluginInterface.m */,
+				1B3DC6FA154F5C3800B80174 /* v002Shader.h */,
+				1B3DC6FB154F5C3800B80174 /* v002Shader.m */,
+				1B3DC6FC154F5C3800B80174 /* v002UniqueClassNames.h */,
 			);
-			name = "Helper Classes";
-			path = "../../Helper Classes";
-			sourceTree = SOURCE_ROOT;
+			path = "v002 Utilities";
+			sourceTree = "<group>";
 		};
 		32C88E010371C26100C91783 /* Other Sources */ = {
 			isa = PBXGroup;
@@ -230,9 +233,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				16BA95420A7EB2EB001E4983 /* v002_FXAAPlugIn.m in Sources */,
-				1BCE41501447F42F000B5670 /* v002FBO.m in Sources */,
-				1BCE41521447F42F000B5670 /* v002MasterPluginInterface.m in Sources */,
-				1BCE41531447F42F000B5670 /* v002Shader.m in Sources */,
+				1B3DC6FD154F5C3800B80174 /* v002FBO.m in Sources */,
+				1B3DC6FE154F5C3800B80174 /* v002MasterPluginInterface.m in Sources */,
+				1B3DC6FF154F5C3800B80174 /* v002Shader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
