@@ -2,7 +2,6 @@
 #define v002_SHADER_CLASS_NAME_REPLACE_ME v002FXAAShader
 #define v002_PLUGIN_CLASS_NAME_REPLACE_ME v002FXAAMasterPluginInterface
 
-
 #ifdef __OBJC__
 	#import <Quartz/Quartz.h>
 #endif
