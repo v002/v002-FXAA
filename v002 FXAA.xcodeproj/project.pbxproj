@@ -264,7 +264,9 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "V002_UNIQUE_CLASS_NAME_PREFIX=v002FXAA";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Graphics/Quartz Composer Plug-Ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "v002 FXAA";
+				SDKROOT = macosx;
 				V002_UNIQUE_CLASS_NAME_PREFIX = v002FilmEffects;
 				WRAPPER_EXTENSION = plugin;
 				ZERO_LINK = YES;
@@ -282,7 +284,9 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "V002_UNIQUE_CLASS_NAME_PREFIX=v002FXAA";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Graphics/Quartz Composer Plug-Ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "v002 FXAA";
+				SDKROOT = macosx;
 				V002_UNIQUE_CLASS_NAME_PREFIX = v002FilmEffects;
 				WRAPPER_EXTENSION = plugin;
 			};
@@ -314,14 +318,18 @@
 		233E2D8A0A83C7AC005A62DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "Build & Install";
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
 		233E2D8B0A83C7AC005A62DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "Build & Install";
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};

@@ -6,20 +6,20 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleGetInfoString</key>
+	<string>v002 FXAA version 1.0, Copyright YourCompany.</string>
 	<key>CFBundleIdentifier</key>
-	<string>info.v002.${PRODUCT_NAME:identifier}</string>
+	<string>info.v002.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
-	<key>CFBundleGetInfoString</key>
-	<string>v002 FXAA version 1.0, Copyright YourCompany.</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.1</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
 	<key>QCPlugInClasses</key>
 	<array>
 		<string>v002_FXAAPlugIn</string>
