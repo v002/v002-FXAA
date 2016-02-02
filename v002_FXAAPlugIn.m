@@ -62,6 +62,21 @@ static void _TextureReleaseCallback(CGLContextObj cgl_ctx, GLuint name, void* in
 	if(self = [super init])
 	{
 		self.pluginShaderName = @"v002.FXAA";
+        
+        self.shaderUniformBlock = ^void(CGLContextObj cgl_ctx, v002_FXAAPlugIn* instance,  __unsafe_unretained id<QCPlugInInputImageSource> image)
+        {
+            if(instance && image)
+            {
+                GLsizei width = [image imageBounds].size.width;
+                GLsizei height = [image imageBounds].size.height;
+
+                // set program vars
+                glUniform1iARB([pluginShader getUniformLocation:"bgl_RenderedTexture"], 0);
+                glUniform1fARB([pluginShader getUniformLocation:"bgl_RenderedTextureWidth"], width);
+                glUniform1fARB([pluginShader getUniformLocation:"bgl_RenderedTextureHeight"], height);
+            }
+        };
+
 	}
 	
 	return self;
@@ -82,111 +97,46 @@ static void _TextureReleaseCallback(CGLContextObj cgl_ctx, GLuint name, void* in
 @implementation v002_FXAAPlugIn (Execution)
 
 - (BOOL) execute:(id<QCPlugInContext>)context atTime:(NSTimeInterval)time withArguments:(NSDictionary*)arguments
-{	
-	GLuint finalOutput = [self renderToFBO:context image:self.inputImage];
-	
-	id provider = nil;	
-	
-	if(finalOutput != 0)
-	{
-		
-#if __BIG_ENDIAN__
-#define v002QCPluginPixelFormat QCPlugInPixelFormatARGB8
-#else
-#define v002QCPluginPixelFormat QCPlugInPixelFormatBGRA8			
-#endif
-		provider = [context outputImageProviderFromTextureWithPixelFormat:v002QCPluginPixelFormat
-															   pixelsWide:[self.inputImage imageBounds].size.width 
-															   pixelsHigh:[self.inputImage imageBounds].size.height
-																	 name:finalOutput
-																  flipped:[self.inputImage textureFlipped] 
-														  releaseCallback:_TextureReleaseCallback
-														   releaseContext:NULL
-															   colorSpace:[context colorSpace]
-														 shouldColorMatch:[self.inputImage shouldColorMatch]];
-		
-		self.outputImage = provider;
-		
-	}
-
-	return YES;
-}
-
-
-- (GLuint) renderToFBO:(id<QCPlugInContext>)context image:(id <QCPlugInInputImageSource>)image
 {
-	GLsizei width = [image imageBounds].size.width, height = [image imageBounds].size.height;
-	
-	CGLContextObj cgl_ctx = [context CGLContextObj];
-	
-	// save/restore state once
-	glPushAttrib(GL_ALL_ATTRIB_BITS);
-	glPushClientAttrib(GL_CLIENT_VERTEX_ARRAY_BIT);
-	
-    // new texture
-    GLuint fboTex = 0;
-    glGenTextures(1, &fboTex);
-    glBindTexture(GL_TEXTURE_RECTANGLE_ARB, fboTex);
-    glTexImage2D(GL_TEXTURE_RECTANGLE_ARB, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    CGLContextObj cgl_ctx = [context CGLContextObj];
     
-	[pluginFBO pushFBO:cgl_ctx];
-    [pluginFBO attachFBO:cgl_ctx withTexture:fboTex width:width height:height];
+    id<QCPlugInInputImageSource>   image = self.inputImage;
     
-    glClear(GL_COLOR_BUFFER_BIT);
+    CGColorSpaceRef cspace = ([image shouldColorMatch]) ? [context colorSpace] : [image imageColorSpace];
     
-	glColor4f(1.0, 1.0, 1.0, 1.0);
-	
-	CGColorSpaceRef cspace = ([image shouldColorMatch]) ? [context colorSpace] : [image imageColorSpace];
-	if(image && [image lockTextureRepresentationWithColorSpace:cspace forBounds:[image imageBounds]])
-	{
-		[image bindTextureRepresentationToCGLContext:[context CGLContextObj] textureUnit:GL_TEXTURE0 normalizeCoordinates:YES];
-		
-		// bind our shader program
-		glUseProgramObjectARB([pluginShader programObject]);
-		
-		// set program vars
-		glUniform1iARB([pluginShader getUniformLocation:"bgl_RenderedTexture"], 0); 
-		glUniform1fARB([pluginShader getUniformLocation:"bgl_RenderedTextureWidth"], width); 
-		glUniform1fARB([pluginShader getUniformLocation:"bgl_RenderedTextureHeight"], height); 
-
-		// move to VA for rendering
-		GLfloat tex_coords[] = 
-		{
-			1,1,
-			0.0,1,
-			0.0,0.0,
-			1,0.0
-		};
-		
-		GLfloat verts[] = 
-		{
-			width,height,
-			0.0,height,
-			0.0,0.0,
-			width,0.0
-		};
-		
-		glEnableClientState( GL_TEXTURE_COORD_ARRAY );
-		glTexCoordPointer(2, GL_FLOAT, 0, tex_coords );
-		glEnableClientState(GL_VERTEX_ARRAY);		
-		glVertexPointer(2, GL_FLOAT, 0, verts );
-		glDrawArrays( GL_TRIANGLE_FAN, 0, 4 );	// TODO: GL_QUADS or GL_TRIANGLE_FAN?
-		
-		// disable shader program
-		glUseProgramObjectARB(NULL);
-		
-		[image unbindTextureRepresentationFromCGLContext:[context CGLContextObj] textureUnit:GL_TEXTURE0];
-		[image unlockTextureRepresentation];
-	}
-	
-    [pluginFBO detachFBO:cgl_ctx]; // pops out and resets cached FBO state from above.
-	[pluginFBO popFBO:cgl_ctx];
-	
-	glPopClientAttrib();
-	glPopAttrib();
-	
-	return fboTex;
+    if(image && [image lockTextureRepresentationWithColorSpace:cspace forBounds:[image imageBounds]])
+    {
+        [image bindTextureRepresentationToCGLContext:[context CGLContextObj] textureUnit:GL_TEXTURE0 normalizeCoordinates:YES];
+        
+        BOOL useFloat = [self boundImageIsFloatingPoint:image inContext:cgl_ctx];
+        
+        // Render
+        GLuint finalOutput = [self singleImageRenderWithContext:cgl_ctx image:image useFloat:useFloat];
+        
+        [image unbindTextureRepresentationFromCGLContext:[context CGLContextObj] textureUnit:GL_TEXTURE0];
+        [image unlockTextureRepresentation];
+        
+        id provider = nil;
+        
+        if(finalOutput != 0)
+        {
+            provider = [context outputImageProviderFromTextureWithPixelFormat:[self pixelFormatIfUsingFloat:useFloat]
+                                                                   pixelsWide:[image imageBounds].size.width
+                                                                   pixelsHigh:[image imageBounds].size.height
+                                                                         name:finalOutput
+                                                                      flipped:NO
+                                                              releaseCallback:_TextureReleaseCallback
+                                                               releaseContext:NULL
+                                                                   colorSpace:[context colorSpace]
+                                                             shouldColorMatch:[image shouldColorMatch]];
+            
+            self.outputImage = provider;
+        }
+    }
+    else
+        self.outputImage = nil;
+    
+    return YES;
 }
-
 
 @end

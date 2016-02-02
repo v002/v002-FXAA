@@ -14,12 +14,6 @@
 }
 
 @property (assign) id <QCPlugInInputImageSource> inputImage;
-
 @property (assign) id <QCPlugInOutputImageProvider> outputImage;
 
-@end
-
-
-@interface v002_FXAAPlugIn (Execution)
-- (GLuint) renderToFBO:(id<QCPlugInContext>)context image:(id <QCPlugInInputImageSource>)image;
 @end
